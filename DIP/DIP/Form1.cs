@@ -10,11 +10,31 @@ using System.Windows.Forms;
 
 namespace DIP
 {
-    public partial class Form1 : Form
+    public partial class formDefault : Form
     {
-        public Form1()
+        public formDefault()
         {
             InitializeComponent();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Loads and open an image
+            using(OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Open Image";
+                openFileDialog.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
+
+                if(openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    pictureBoxOriginal.Image = new Bitmap(openFileDialog.FileName);
+                }
+            }
         }
     }
 }
