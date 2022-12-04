@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using DIP.ImageProcessors;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace DIP
@@ -15,11 +11,6 @@ namespace DIP
         public formDefault()
         {
             InitializeComponent();
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -32,9 +23,29 @@ namespace DIP
 
                 if(openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    pictureBoxOriginal.Image = new Bitmap(openFileDialog.FileName);
+                    originalPictureBox.Image = new Bitmap(openFileDialog.FileName);
                 }
             }
         }
+
+        private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void basicCopyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            processButton.Enabled = true;
+            modeLabel.Text = "Mode : Copy";
+        }
+
+        private void processButton_Click(object sender, EventArgs e)
+        {
+            new Thread(()=>
+            {
+                processedPictureBox.Image = Copy.Process((Bitmap)originalPictureBox.Image);
+            }).Start();
+        }
+
     }
 }

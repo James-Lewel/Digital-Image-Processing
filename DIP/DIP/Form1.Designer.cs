@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formDefault));
-            this.pictureBoxOriginal = new System.Windows.Forms.PictureBox();
-            this.pictureBoxProcessed = new System.Windows.Forms.PictureBox();
-            this.backgroundWorker_Processor = new System.ComponentModel.BackgroundWorker();
+            this.originalPictureBox = new System.Windows.Forms.PictureBox();
+            this.processedPictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.toolStripDefault = new System.Windows.Forms.ToolStrip();
@@ -47,44 +46,40 @@
             this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStripDefault = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.processButton = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.modeLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProcessed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.originalPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
             this.toolStripDefault.SuspendLayout();
             this.statusStripDefault.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBoxOriginal
+            // originalPictureBox
             // 
-            this.pictureBoxOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxOriginal.Location = new System.Drawing.Point(12, 141);
-            this.pictureBoxOriginal.Name = "pictureBoxOriginal";
-            this.pictureBoxOriginal.Size = new System.Drawing.Size(374, 373);
-            this.pictureBoxOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxOriginal.TabIndex = 0;
-            this.pictureBoxOriginal.TabStop = false;
+            this.originalPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.originalPictureBox.Location = new System.Drawing.Point(12, 141);
+            this.originalPictureBox.Name = "originalPictureBox";
+            this.originalPictureBox.Size = new System.Drawing.Size(374, 373);
+            this.originalPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.originalPictureBox.TabIndex = 0;
+            this.originalPictureBox.TabStop = false;
             // 
-            // pictureBoxProcessed
+            // processedPictureBox
             // 
-            this.pictureBoxProcessed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxProcessed.Location = new System.Drawing.Point(398, 141);
-            this.pictureBoxProcessed.Name = "pictureBoxProcessed";
-            this.pictureBoxProcessed.Size = new System.Drawing.Size(374, 373);
-            this.pictureBoxProcessed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxProcessed.TabIndex = 0;
-            this.pictureBoxProcessed.TabStop = false;
-            // 
-            // backgroundWorker_Processor
-            // 
-            this.backgroundWorker_Processor.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.processedPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.processedPictureBox.Location = new System.Drawing.Point(398, 141);
+            this.processedPictureBox.Name = "processedPictureBox";
+            this.processedPictureBox.Size = new System.Drawing.Size(374, 373);
+            this.processedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.processedPictureBox.TabIndex = 0;
+            this.processedPictureBox.TabStop = false;
             // 
             // label1
             // 
@@ -134,15 +129,16 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openFileToolStripMenuItem.Text = "Open";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
             // 
             // saveFileToolStripMenuItem
             // 
             this.saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveFileToolStripMenuItem.Text = "Save";
+            this.saveFileToolStripMenuItem.Click += new System.EventHandler(this.saveFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -169,6 +165,7 @@
             this.basicCopyToolStripMenuItem.Name = "basicCopyToolStripMenuItem";
             this.basicCopyToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.basicCopyToolStripMenuItem.Text = "Basic Copy";
+            this.basicCopyToolStripMenuItem.Click += new System.EventHandler(this.basicCopyToolStripMenuItem_Click);
             // 
             // greyscaleToolStripMenuItem
             // 
@@ -202,7 +199,7 @@
             // statusStripDefault
             // 
             this.statusStripDefault.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1});
+            this.progressBar});
             this.statusStripDefault.Location = new System.Drawing.Point(0, 539);
             this.statusStripDefault.Name = "statusStripDefault";
             this.statusStripDefault.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -210,37 +207,38 @@
             this.statusStripDefault.TabIndex = 3;
             this.statusStripDefault.Text = "statusStrip1";
             // 
-            // toolStripProgressBar1
+            // progressBar
             // 
-            this.toolStripProgressBar1.Margin = new System.Windows.Forms.Padding(10, 3, 1, 3);
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
-            this.toolStripProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar.Margin = new System.Windows.Forms.Padding(10, 3, 1, 3);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 16);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.processButton);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.modeLabel);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(399, 25);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(373, 81);
             this.panel1.TabIndex = 4;
             // 
-            // button1
+            // processButton
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(203, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Process";
-            this.button1.UseVisualStyleBackColor = true;
+            this.processButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.processButton.Enabled = false;
+            this.processButton.Location = new System.Drawing.Point(203, 31);
+            this.processButton.Name = "processButton";
+            this.processButton.Size = new System.Drawing.Size(96, 23);
+            this.processButton.TabIndex = 2;
+            this.processButton.Text = "Process";
+            this.processButton.UseVisualStyleBackColor = true;
+            this.processButton.Click += new System.EventHandler(this.processButton_Click);
             // 
             // textBox2
             // 
@@ -267,14 +265,14 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Second Value";
             // 
-            // label5
+            // modeLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(203, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "D.I.P Mode : None";
+            this.modeLabel.AutoSize = true;
+            this.modeLabel.Location = new System.Drawing.Point(203, 10);
+            this.modeLabel.Name = "modeLabel";
+            this.modeLabel.Size = new System.Drawing.Size(69, 13);
+            this.modeLabel.TabIndex = 0;
+            this.modeLabel.Text = "Mode : None";
             // 
             // label3
             // 
@@ -295,16 +293,16 @@
             this.Controls.Add(this.toolStripDefault);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBoxProcessed);
-            this.Controls.Add(this.pictureBoxOriginal);
+            this.Controls.Add(this.processedPictureBox);
+            this.Controls.Add(this.originalPictureBox);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "formDefault";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Digital Image Processor";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProcessed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.originalPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).EndInit();
             this.toolStripDefault.ResumeLayout(false);
             this.toolStripDefault.PerformLayout();
             this.statusStripDefault.ResumeLayout(false);
@@ -318,22 +316,21 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxOriginal;
-        private System.Windows.Forms.PictureBox pictureBoxProcessed;
-        private System.ComponentModel.BackgroundWorker backgroundWorker_Processor;
+        private System.Windows.Forms.PictureBox originalPictureBox;
+        private System.Windows.Forms.PictureBox processedPictureBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStrip toolStripDefault;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.StatusStrip statusStripDefault;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripProgressBar progressBar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button processButton;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label modeLabel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
