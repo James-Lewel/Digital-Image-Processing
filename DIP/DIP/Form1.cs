@@ -68,6 +68,13 @@ namespace DIP
             mode = "colorinversion";
         }
 
+        private void histogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            processButton.Enabled = true;
+            modeLabel.Text = "Mode : Histogram";
+            mode = "histogram";
+        }
+
         private async void processButton_Click(object sender, EventArgs e)
         {
             try
@@ -103,6 +110,14 @@ namespace DIP
                             processedPictureBox.Image = ColorInversion.Process((Bitmap)originalPictureBox.Image);
                         });
                         break;
+
+                    // Runs the histogram function
+                    case "histogram":
+                        await Task.Run(() =>
+                        {
+                            processedPictureBox.Image = Histogram.Process((Bitmap)originalPictureBox.Image);
+                        });
+                        break;
                 }
             }
             finally
@@ -114,6 +129,5 @@ namespace DIP
                 processButton.Enabled = true;
             }
         }
-
     }
 }

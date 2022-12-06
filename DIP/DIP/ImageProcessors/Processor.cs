@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace DIP.Processors
 {
@@ -75,6 +76,43 @@ namespace DIP.Processors
 
                     // Copies pixel from original image to processed image
                     processedImage.SetPixel(x, y, newColor);
+                }
+            }
+
+            return processedImage;
+        }
+
+        public Bitmap HistogramImage(Bitmap originalImage)
+        {
+            Color color;
+
+            // Gets greyscale image of original image
+            originalImage = GreyscaleImage(originalImage);
+
+            // Collects data from original image
+            int[] histogramData = new int[256];
+            for (int x = 0; x < originalImage.Width; x++)
+            {
+                for (int y = 0; y < originalImage.Height; y++)
+                {
+                    color = originalImage.GetPixel(x, y);
+                    histogramData[color.R]++;
+                }
+            }
+
+            Bitmap processedImage = new Bitmap(256, originalImage.Height);
+            for (int x = 0; x < 256; x++)
+            {
+                // Sets white pixels
+                for (int y = 0; y < processedImage.Height; y++)
+                {
+                    processedImage.SetPixel(x, y, Color.White);
+                }
+
+                // Sets and plots black pixel in histogram data
+                for (int y = 0; y < Math.Min(histogramData[x] / 5, processedImage.Height - 1); y++)
+                {
+                    processedImage.SetPixel(x, (processedImage.Height - 1) - y, Color.Black);
                 }
             }
 
