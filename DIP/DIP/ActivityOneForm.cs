@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace DIP
 {
-    public partial class formDefault : Form
+    public partial class activityOneForm : Form
     {
         string mode;
         private Dictionary<string, Action> processorFactory;
-        public formDefault()
+        public activityOneForm()
         {
             InitializeComponent();
 
@@ -131,6 +131,11 @@ namespace DIP
             }
         }
 
-        
+        private void switchButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            ActivityTwoForm activityTwoForm = new ActivityTwoForm(this);
+            activityTwoForm.ShowDialog();
+        }
     }
 }
