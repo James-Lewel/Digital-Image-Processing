@@ -1,6 +1,5 @@
 ﻿using DIP.Processors;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace DIP.ImageProcessors
 {
