@@ -55,6 +55,33 @@ namespace DIP.Processors
             return processedImage;
         }
 
+        public Bitmap SepiaImage(Bitmap originalImage)
+        {
+            Bitmap processedImage = new Bitmap(originalImage.Width, originalImage.Height);
+            Color oldColor, newColor;
+            byte red, green, blue;
+
+            for (int x = 0; x < originalImage.Width; x++)
+            {
+                for (int y = 0; y < originalImage.Height; y++)
+                {
+                    // Gets pixel from original image
+                    oldColor = originalImage.GetPixel(x, y);
+
+                    // Sets RGB and computes sepia
+                    red = (byte) Math.Min(255, ((oldColor.R * .393) + (oldColor.G * .769) + (oldColor.B * .189)));
+                    green = (byte) Math.Min(255, ((oldColor.R * .349) + (oldColor.G * .686) + (oldColor.B * .168)));
+                    blue = (byte) Math.Min(255, ((oldColor.R * .272) + (oldColor.G * .534) + (oldColor.B * .131)));
+                    newColor = Color.FromArgb(red, green, blue);
+
+                    // Copies pixel from original image to processed image
+                    processedImage.SetPixel(x, y, newColor);
+                }
+            }
+
+            return processedImage;
+        }
+
         public Bitmap ColorInversionImage(Bitmap originalImage)
         {
             Bitmap processedImage = new Bitmap(originalImage.Width, originalImage.Height);

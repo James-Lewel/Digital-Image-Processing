@@ -75,6 +75,13 @@ namespace DIP
             mode = "histogram";
         }
 
+        private void sepiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            processButton.Enabled = true;
+            modeLabel.Text = "Mode : Sepia";
+            mode = "sepia";
+        }
+
         private async void processButton_Click(object sender, EventArgs e)
         {
             try
@@ -116,6 +123,14 @@ namespace DIP
                         await Task.Run(() =>
                         {
                             processedPictureBox.Image = Histogram.Process((Bitmap)originalPictureBox.Image);
+                        });
+                        break;
+
+                    // Runs the sepia function
+                    case "sepia":
+                        await Task.Run(() =>
+                        {
+                            processedPictureBox.Image = Sepia.Process((Bitmap)originalPictureBox.Image);
                         });
                         break;
                 }

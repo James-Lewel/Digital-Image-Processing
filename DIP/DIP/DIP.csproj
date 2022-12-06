@@ -53,6 +53,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageProcessors\Sepia.cs" />
     <Compile Include="ImageProcessors\Histogram.cs" />
     <Compile Include="ImageProcessors\Copy.cs" />
     <Compile Include="ImageProcessors\ColorInversion.cs" />
