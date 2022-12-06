@@ -1,5 +1,6 @@
 ﻿using DIP.ImageProcessors;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,10 +10,35 @@ namespace DIP
     public partial class formDefault : Form
     {
         string mode;
-
+        private Dictionary<string, Action> processorFactory;
         public formDefault()
         {
             InitializeComponent();
+
+            // Initialize Processor Factory
+            processorFactory = new Dictionary<string, Action>()
+            {
+                {"copy", (() =>
+                {
+                    processedPictureBox.Image = Copy.Process((Bitmap)originalPictureBox.Image);
+                }) },
+                {"greyscale", (() =>
+                {
+                    processedPictureBox.Image = Greyscale.Process((Bitmap)originalPictureBox.Image);
+                }) },
+                {"colorinversion", (() =>
+                {
+                    processedPictureBox.Image = ColorInversion.Process((Bitmap)originalPictureBox.Image);
+                }) },
+                {"histogram", (() =>
+                {
+                    processedPictureBox.Image = Histogram.Process((Bitmap)originalPictureBox.Image);
+                }) },
+                {"sepia", (() =>
+                {
+                    processedPictureBox.Image = Sepia.Process((Bitmap)originalPictureBox.Image);
+                }) },
+            };
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -92,48 +118,8 @@ namespace DIP
                 // Disables process button
                 processButton.Enabled = false;
 
-                switch (mode)
-                {
-                    // Runs the copy function
-                    case "copy":
-                        await Task.Run(() =>
-                        {
-                            processedPictureBox.Image = Copy.Process((Bitmap)originalPictureBox.Image);
-                        });
-                        break;
-
-                    // Runs the greyscale function
-                    case "greyscale":
-                        await Task.Run(() =>
-                        {
-                            processedPictureBox.Image = Greyscale.Process((Bitmap)originalPictureBox.Image);
-                        });
-                        break;
-
-                    // Runs the inversion function
-                    case "colorinversion":
-                        await Task.Run(() =>
-                        {
-                            processedPictureBox.Image = ColorInversion.Process((Bitmap)originalPictureBox.Image);
-                        });
-                        break;
-
-                    // Runs the histogram function
-                    case "histogram":
-                        await Task.Run(() =>
-                        {
-                            processedPictureBox.Image = Histogram.Process((Bitmap)originalPictureBox.Image);
-                        });
-                        break;
-
-                    // Runs the sepia function
-                    case "sepia":
-                        await Task.Run(() =>
-                        {
-                            processedPictureBox.Image = Sepia.Process((Bitmap)originalPictureBox.Image);
-                        });
-                        break;
-                }
+                // Runs the action with the corresponding mode
+                await Task.Run(processorFactory[mode]);
             }
             finally
             {
@@ -144,5 +130,7 @@ namespace DIP
                 processButton.Enabled = true;
             }
         }
+
+        
     }
 }
