@@ -38,7 +38,7 @@
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.modeToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.basicCopyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.greyscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorInversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +54,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.modeLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.brightnessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contrastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.originalPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
             this.toolStripDefault.SuspendLayout();
@@ -106,7 +108,7 @@
             this.toolStripDefault.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSplitButton1,
             this.toolStripSeparator1,
-            this.toolStripSplitButton2,
+            this.modeToolStripButton,
             this.toolStripSeparator2});
             this.toolStripDefault.Location = new System.Drawing.Point(0, 0);
             this.toolStripDefault.Name = "toolStripDefault";
@@ -145,20 +147,21 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripSplitButton2
+            // modeToolStripButton
             // 
-            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripSplitButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modeToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.modeToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.basicCopyToolStripMenuItem,
             this.greyscaleToolStripMenuItem,
             this.colorInversionToolStripMenuItem,
             this.histogramToolStripMenuItem,
             this.sepiaToolStripMenuItem});
-            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
-            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(51, 22);
-            this.toolStripSplitButton2.Text = "Mode";
+            this.modeToolStripButton.Enabled = false;
+            this.modeToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("modeToolStripButton.Image")));
+            this.modeToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.modeToolStripButton.Name = "modeToolStripButton";
+            this.modeToolStripButton.Size = new System.Drawing.Size(51, 22);
+            this.modeToolStripButton.Text = "Mode";
             // 
             // basicCopyToolStripMenuItem
             // 
@@ -170,8 +173,9 @@
             // greyscaleToolStripMenuItem
             // 
             this.greyscaleToolStripMenuItem.Name = "greyscaleToolStripMenuItem";
-            this.greyscaleToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.greyscaleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.greyscaleToolStripMenuItem.Text = "Greyscale";
+            this.greyscaleToolStripMenuItem.Click += new System.EventHandler(this.greyscaleToolStripMenuItem_Click);
             // 
             // colorInversionToolStripMenuItem
             // 
@@ -181,8 +185,11 @@
             // 
             // histogramToolStripMenuItem
             // 
+            this.histogramToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.brightnessToolStripMenuItem,
+            this.contrastToolStripMenuItem});
             this.histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
-            this.histogramToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.histogramToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.histogramToolStripMenuItem.Text = "Histogram";
             // 
             // sepiaToolStripMenuItem
@@ -210,9 +217,12 @@
             // progressBar
             // 
             this.progressBar.Margin = new System.Windows.Forms.Padding(10, 3, 1, 3);
+            this.progressBar.MarqueeAnimationSpeed = 50;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(100, 16);
-            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar.Step = 25;
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.Visible = false;
             // 
             // panel1
             // 
@@ -283,6 +293,18 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "First Value";
             // 
+            // brightnessToolStripMenuItem
+            // 
+            this.brightnessToolStripMenuItem.Name = "brightnessToolStripMenuItem";
+            this.brightnessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.brightnessToolStripMenuItem.Text = "Brightness";
+            // 
+            // contrastToolStripMenuItem
+            // 
+            this.contrastToolStripMenuItem.Name = "contrastToolStripMenuItem";
+            this.contrastToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contrastToolStripMenuItem.Text = "Contrast";
+            // 
             // formDefault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,12 +357,14 @@
         private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton2;
+        private System.Windows.Forms.ToolStripDropDownButton modeToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem basicCopyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem greyscaleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem colorInversionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem histogramToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sepiaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brightnessToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem contrastToolStripMenuItem;
     }
 }
 
