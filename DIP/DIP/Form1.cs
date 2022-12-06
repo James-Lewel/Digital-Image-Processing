@@ -61,6 +61,13 @@ namespace DIP
             mode = "greyscale";
         }
 
+        private void colorInversionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            processButton.Enabled = true;
+            modeLabel.Text = "Mode : Color Inversion";
+            mode = "colorinversion";
+        }
+
         private async void processButton_Click(object sender, EventArgs e)
         {
             try
@@ -81,11 +88,19 @@ namespace DIP
                         });
                         break;
 
-                    // Runs the copy function
+                    // Runs the greyscale function
                     case "greyscale":
                         await Task.Run(() =>
                         {
                             processedPictureBox.Image = Greyscale.Process((Bitmap)originalPictureBox.Image);
+                        });
+                        break;
+
+                    // Runs the inversion function
+                    case "colorinversion":
+                        await Task.Run(() =>
+                        {
+                            processedPictureBox.Image = ColorInversion.Process((Bitmap)originalPictureBox.Image);
                         });
                         break;
                 }

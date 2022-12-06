@@ -53,5 +53,32 @@ namespace DIP.Processors
 
             return processedImage;
         }
+
+        public Bitmap ColorInversionImage(Bitmap originalImage)
+        {
+            Bitmap processedImage = new Bitmap(originalImage.Width, originalImage.Height);
+            Color oldColor, newColor;
+            byte red, green, blue;
+
+            for (int x = 0; x < originalImage.Width; x++)
+            {
+                for (int y = 0; y < originalImage.Height; y++)
+                {
+                    // Gets pixel from original image
+                    oldColor = originalImage.GetPixel(x, y);
+
+                    // Sets RGB and computes inversion
+                    red = (byte)(255 - oldColor.R);
+                    green = (byte)(255 - oldColor.G);
+                    blue = (byte)(255 - oldColor.B);
+                    newColor = Color.FromArgb(red, green, blue);
+
+                    // Copies pixel from original image to processed image
+                    processedImage.SetPixel(x, y, newColor);
+                }
+            }
+
+            return processedImage;
+        }
     }
 }

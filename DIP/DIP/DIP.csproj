@@ -53,6 +53,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageProcessors\Copy.cs" />
+    <Compile Include="ImageProcessors\ColorInversion.cs" />
     <Compile Include="ImageProcessors\Greyscale.cs" />
     <Compile Include="ImageProcessors\Processor.cs" />
     <Compile Include="Program.cs" />

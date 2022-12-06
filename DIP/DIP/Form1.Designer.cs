@@ -180,8 +180,9 @@
             // colorInversionToolStripMenuItem
             // 
             this.colorInversionToolStripMenuItem.Name = "colorInversionToolStripMenuItem";
-            this.colorInversionToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.colorInversionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.colorInversionToolStripMenuItem.Text = "Color Inversion";
+            this.colorInversionToolStripMenuItem.Click += new System.EventHandler(this.colorInversionToolStripMenuItem_Click);
             // 
             // histogramToolStripMenuItem
             // 
