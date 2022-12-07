@@ -39,22 +39,22 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.modeLabel = new System.Windows.Forms.Label();
             this.modeToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.subtractionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openForegroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDefault = new System.Windows.Forms.ToolStrip();
+            this.switchButton = new System.Windows.Forms.ToolStripButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.processedPictureBox = new System.Windows.Forms.PictureBox();
             this.foregroundPictureBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.subtractionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundPictureBox = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.openForegroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.switchButton = new System.Windows.Forms.ToolStripButton();
             this.statusStripDefault.SuspendLayout();
             this.toolStripDefault.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
@@ -73,6 +73,7 @@
             this.processButton.TabIndex = 2;
             this.processButton.Text = "Process";
             this.processButton.UseVisualStyleBackColor = true;
+            this.processButton.Click += new System.EventHandler(this.processButton_Click);
             // 
             // textBox2
             // 
@@ -155,6 +156,13 @@
             this.modeToolStripButton.Size = new System.Drawing.Size(51, 22);
             this.modeToolStripButton.Text = "Mode";
             // 
+            // subtractionToolStripMenuItem
+            // 
+            this.subtractionToolStripMenuItem.Name = "subtractionToolStripMenuItem";
+            this.subtractionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.subtractionToolStripMenuItem.Text = "Subtraction";
+            this.subtractionToolStripMenuItem.Click += new System.EventHandler(this.subtractionToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -162,6 +170,7 @@
             // 
             // saveFileToolStripMenuItem
             // 
+            this.saveFileToolStripMenuItem.Enabled = false;
             this.saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
             this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveFileToolStripMenuItem.Text = "Save";
@@ -175,6 +184,20 @@
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
             this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openFileToolStripMenuItem.Text = "Open";
+            // 
+            // openForegroundToolStripMenuItem
+            // 
+            this.openForegroundToolStripMenuItem.Name = "openForegroundToolStripMenuItem";
+            this.openForegroundToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openForegroundToolStripMenuItem.Text = "Open Foreground";
+            this.openForegroundToolStripMenuItem.Click += new System.EventHandler(this.openForegroundToolStripMenuItem_Click);
+            // 
+            // openBackgroundToolStripMenuItem
+            // 
+            this.openBackgroundToolStripMenuItem.Name = "openBackgroundToolStripMenuItem";
+            this.openBackgroundToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openBackgroundToolStripMenuItem.Text = "Open Background";
+            this.openBackgroundToolStripMenuItem.Click += new System.EventHandler(this.openBackgroundToolStripMenuItem_Click);
             // 
             // toolStripSplitButton1
             // 
@@ -201,6 +224,16 @@
             this.toolStripDefault.Size = new System.Drawing.Size(784, 25);
             this.toolStripDefault.TabIndex = 9;
             this.toolStripDefault.Text = "toolStrip1";
+            // 
+            // switchButton
+            // 
+            this.switchButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.switchButton.Image = ((System.Drawing.Image)(resources.GetObject("switchButton.Image")));
+            this.switchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.switchButton.Name = "switchButton";
+            this.switchButton.Size = new System.Drawing.Size(98, 22);
+            this.switchButton.Text = "Switch Activity 1";
+            this.switchButton.Click += new System.EventHandler(this.switchButton_Click);
             // 
             // label2
             // 
@@ -256,12 +289,6 @@
             this.panel1.Size = new System.Drawing.Size(373, 81);
             this.panel1.TabIndex = 11;
             // 
-            // subtractionToolStripMenuItem
-            // 
-            this.subtractionToolStripMenuItem.Name = "subtractionToolStripMenuItem";
-            this.subtractionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.subtractionToolStripMenuItem.Text = "Subtraction";
-            // 
             // backgroundPictureBox
             // 
             this.backgroundPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -281,30 +308,6 @@
             this.label5.Size = new System.Drawing.Size(160, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Background Image";
-            // 
-            // openForegroundToolStripMenuItem
-            // 
-            this.openForegroundToolStripMenuItem.Name = "openForegroundToolStripMenuItem";
-            this.openForegroundToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openForegroundToolStripMenuItem.Text = "Open Foreground";
-            this.openForegroundToolStripMenuItem.Click += new System.EventHandler(this.openForegroundToolStripMenuItem_Click);
-            // 
-            // openBackgroundToolStripMenuItem
-            // 
-            this.openBackgroundToolStripMenuItem.Name = "openBackgroundToolStripMenuItem";
-            this.openBackgroundToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openBackgroundToolStripMenuItem.Text = "Open Background";
-            this.openBackgroundToolStripMenuItem.Click += new System.EventHandler(this.openBackgroundToolStripMenuItem_Click);
-            // 
-            // switchButton
-            // 
-            this.switchButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.switchButton.Image = ((System.Drawing.Image)(resources.GetObject("switchButton.Image")));
-            this.switchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.switchButton.Name = "switchButton";
-            this.switchButton.Size = new System.Drawing.Size(98, 22);
-            this.switchButton.Text = "Switch Activity 1";
-            this.switchButton.Click += new System.EventHandler(this.switchButton_Click);
             // 
             // ActivityTwoForm
             // 

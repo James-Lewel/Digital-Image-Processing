@@ -117,6 +117,7 @@ namespace DIP
 
                 // Disables process button
                 processButton.Enabled = false;
+                saveFileToolStripMenuItem.Enabled = true;
 
                 // Runs the action with the corresponding mode
                 await Task.Run(processorFactory[mode]);

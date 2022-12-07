@@ -59,6 +59,7 @@
     <Compile Include="ActivityTwoForm.Designer.cs">
       <DependentUpon>ActivityTwoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageProcessors\Subtraction.cs" />
     <Compile Include="ImageProcessors\Sepia.cs" />
     <Compile Include="ImageProcessors\Histogram.cs" />
     <Compile Include="ImageProcessors\Copy.cs" />
