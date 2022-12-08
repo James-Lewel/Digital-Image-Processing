@@ -199,6 +199,8 @@ namespace DIP
         {
             activityOneForm.Show();
 
+            if (videoCaptureDevice == null) return;
+
             // Stops camera
             if (videoCaptureDevice.IsRunning == true)
                 videoCaptureDevice.Stop();

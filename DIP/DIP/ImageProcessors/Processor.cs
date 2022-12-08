@@ -151,7 +151,7 @@ namespace DIP.Processors
             Bitmap processedImage = new Bitmap(foregroundImage.Width, foregroundImage.Height);
             Color forePixel, backPixel;
 
-            Color green = Color.Green;
+            Color green = Color.FromArgb(0, 0, 255);
             byte greyGreen = (byte)((green.R + green.G + green.B) / 3);
             byte grey;
             byte subtractValue;
@@ -167,9 +167,9 @@ namespace DIP.Processors
                     subtractValue = (byte)Math.Abs(grey - greyGreen);
 
                     if (subtractValue > threshold)
-                        processedImage.SetPixel(x, y, backPixel);
-                    else
                         processedImage.SetPixel(x, y, forePixel);
+                    else
+                        processedImage.SetPixel(x, y, backPixel);
                 }
             }
 
@@ -181,7 +181,7 @@ namespace DIP.Processors
             Bitmap processedImage = new Bitmap(foregroundImage.Width, foregroundImage.Height);
             Color forePixel, backPixel;
 
-            Color green = Color.Green;
+            Color green = Color.FromArgb(0,0,255);
             byte greyGreen = (byte)((green.R + green.G + green.B) / 3);
             byte grey;
             byte subtractValue;
@@ -197,9 +197,9 @@ namespace DIP.Processors
                     subtractValue = (byte)Math.Abs(grey - greyGreen);
 
                     if (subtractValue > threshold)
-                        processedImage.SetPixel(x, y, backPixel);
-                    else
                         processedImage.SetPixel(x, y, forePixel);
+                    else
+                        processedImage.SetPixel(x, y, backPixel);
                 }
             }
 
