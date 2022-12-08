@@ -1,11 +1,7 @@
 ﻿using DIP.ImageProcessors;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -36,7 +32,11 @@ namespace DIP
             {
                 {"subtraction", (() =>
                 {
-                    processedPictureBox.Image = Subtraction.Process((Bitmap)foregroundPictureBox.Image, (Bitmap)backgroundPictureBox.Image);
+                    byte threshold = byte.Parse(firstTextBox.Text);
+                    threshold = Math.Min(byte.MaxValue, threshold);
+                    processedPictureBox.Image = Subtraction.Process((Bitmap)foregroundPictureBox.Image, 
+                                                                    (Bitmap)backgroundPictureBox.Image,
+                                                                    (byte) threshold);
                 }) }
             };
         }
@@ -119,6 +119,7 @@ namespace DIP
         private void subtractionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             processButton.Enabled = true;
+            firstTextBox.Enabled = true;
             modeLabel.Text = "Mode : Subtraction";
             mode = "subtraction";
         }
@@ -133,6 +134,8 @@ namespace DIP
                 // Disables process button
                 processButton.Enabled = false;
                 saveFileToolStripMenuItem.Enabled = true;
+
+                if (firstTextBox.Text.Length <= 0) return;
 
                 // Runs the action with the corresponding mode
                 await Task.Run(processorFactory[mode]);

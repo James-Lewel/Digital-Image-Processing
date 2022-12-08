@@ -55,6 +55,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.modeLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.originalPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
             this.toolStripDefault.SuspendLayout();
@@ -109,6 +111,8 @@
             this.toolStripSeparator1,
             this.modeToolStripButton,
             this.toolStripSeparator2,
+            this.toolStripLabel1,
+            this.toolStripSeparator3,
             this.switchButton});
             this.toolStripDefault.Location = new System.Drawing.Point(0, 0);
             this.toolStripDefault.Name = "toolStripDefault";
@@ -131,7 +135,7 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openFileToolStripMenuItem.Text = "Open";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
             // 
@@ -139,7 +143,7 @@
             // 
             this.saveFileToolStripMenuItem.Enabled = false;
             this.saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveFileToolStripMenuItem.Text = "Save";
             this.saveFileToolStripMenuItem.Click += new System.EventHandler(this.saveFileToolStripMenuItem_Click);
             // 
@@ -304,6 +308,17 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "First Value";
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
+            this.toolStripLabel1.Text = "|----------|";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
             // activityOneForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,6 +378,8 @@
         private System.Windows.Forms.ToolStripMenuItem histogramToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sepiaToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton switchButton;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 

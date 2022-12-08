@@ -31,12 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivityTwoForm));
             this.processButton = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.firstTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.statusStripDefault = new System.Windows.Forms.StatusStrip();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.modeLabel = new System.Windows.Forms.Label();
             this.modeToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.subtractionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +54,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.backgroundPictureBox = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStripDefault.SuspendLayout();
             this.toolStripDefault.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
@@ -83,13 +85,13 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 1;
             // 
-            // textBox1
+            // firstTextBox
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(87, 7);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.firstTextBox.Enabled = false;
+            this.firstTextBox.Location = new System.Drawing.Point(87, 7);
+            this.firstTextBox.Name = "firstTextBox";
+            this.firstTextBox.Size = new System.Drawing.Size(100, 20);
+            this.firstTextBox.TabIndex = 1;
             // 
             // label4
             // 
@@ -130,11 +132,6 @@
             this.statusStripDefault.TabIndex = 10;
             this.statusStripDefault.Text = "statusStrip1";
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // modeLabel
             // 
             this.modeLabel.AutoSize = true;
@@ -159,7 +156,7 @@
             // subtractionToolStripMenuItem
             // 
             this.subtractionToolStripMenuItem.Name = "subtractionToolStripMenuItem";
-            this.subtractionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.subtractionToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.subtractionToolStripMenuItem.Text = "Subtraction";
             this.subtractionToolStripMenuItem.Click += new System.EventHandler(this.subtractionToolStripMenuItem_Click);
             // 
@@ -188,14 +185,14 @@
             // openForegroundToolStripMenuItem
             // 
             this.openForegroundToolStripMenuItem.Name = "openForegroundToolStripMenuItem";
-            this.openForegroundToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openForegroundToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.openForegroundToolStripMenuItem.Text = "Open Foreground";
             this.openForegroundToolStripMenuItem.Click += new System.EventHandler(this.openForegroundToolStripMenuItem_Click);
             // 
             // openBackgroundToolStripMenuItem
             // 
             this.openBackgroundToolStripMenuItem.Name = "openBackgroundToolStripMenuItem";
-            this.openBackgroundToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openBackgroundToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.openBackgroundToolStripMenuItem.Text = "Open Background";
             this.openBackgroundToolStripMenuItem.Click += new System.EventHandler(this.openBackgroundToolStripMenuItem_Click);
             // 
@@ -217,6 +214,8 @@
             this.toolStripSplitButton1,
             this.toolStripSeparator1,
             this.modeToolStripButton,
+            this.toolStripSeparator3,
+            this.toolStripLabel1,
             this.toolStripSeparator2,
             this.switchButton});
             this.toolStripDefault.Location = new System.Drawing.Point(0, 0);
@@ -280,7 +279,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.processButton);
             this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.firstTextBox);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.modeLabel);
             this.panel1.Controls.Add(this.label3);
@@ -308,6 +307,22 @@
             this.label5.Size = new System.Drawing.Size(160, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Background Image";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
+            this.toolStripLabel1.Text = "|----------|";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // ActivityTwoForm
             // 
@@ -348,12 +363,11 @@
 
         private System.Windows.Forms.Button processButton;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox firstTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripProgressBar progressBar;
         private System.Windows.Forms.StatusStrip statusStripDefault;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Label modeLabel;
         private System.Windows.Forms.ToolStripDropDownButton modeToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -372,5 +386,8 @@
         private System.Windows.Forms.PictureBox backgroundPictureBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripButton switchButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
