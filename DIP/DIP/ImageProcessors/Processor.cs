@@ -175,5 +175,35 @@ namespace DIP.Processors
 
             return processedImage;
         }
+
+        public Bitmap LiveSubtractionImage(Bitmap foregroundImage, Bitmap backgroundImage, byte threshold)
+        {
+            Bitmap processedImage = new Bitmap(foregroundImage.Width, foregroundImage.Height);
+            Color forePixel, backPixel;
+
+            Color green = Color.Green;
+            byte greyGreen = (byte)((green.R + green.G + green.B) / 3);
+            byte grey;
+            byte subtractValue;
+
+            for (int x = 0; x < foregroundImage.Width; x++)
+            {
+                for (int y = 0; y < foregroundImage.Height; y++)
+                {
+                    forePixel = foregroundImage.GetPixel(x, y);
+                    backPixel = backgroundImage.GetPixel(x, y);
+
+                    grey = (byte)((forePixel.R + forePixel.G + forePixel.B) / 3);
+                    subtractValue = (byte)Math.Abs(grey - greyGreen);
+
+                    if (subtractValue > threshold)
+                        processedImage.SetPixel(x, y, backPixel);
+                    else
+                        processedImage.SetPixel(x, y, forePixel);
+                }
+            }
+
+            return processedImage;
+        }
     }
 }

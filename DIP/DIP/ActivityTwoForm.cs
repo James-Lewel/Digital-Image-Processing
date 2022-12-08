@@ -1,4 +1,6 @@
-﻿using DIP.ImageProcessors;
+﻿using AForge.Video;
+using AForge.Video.DirectShow;
+using DIP.ImageProcessors;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,6 +17,9 @@ namespace DIP
         private activityOneForm activityOneForm;
         private bool foregroundImageLoaded = false;
         private bool backgroundImageLoaded = false;
+
+        FilterInfoCollection filterInfoCollection;
+        VideoCaptureDevice videoCaptureDevice;
 
         public ActivityTwoForm()
         {
@@ -37,6 +42,14 @@ namespace DIP
                     processedPictureBox.Image = Subtraction.Process((Bitmap)foregroundPictureBox.Image, 
                                                                     (Bitmap)backgroundPictureBox.Image,
                                                                     (byte) threshold);
+                }) },
+                {"livesubtraction", (() =>
+                {
+                    byte threshold = byte.Parse(firstTextBox.Text);
+                    threshold = Math.Min(byte.MaxValue, threshold);
+                    processedPictureBox.Image = LiveSubtraction.Process((Bitmap)foregroundPictureBox.Image,
+                                                                        (Bitmap)backgroundPictureBox.Image,
+                                                                        (byte) threshold);
                 }) }
             };
         }
@@ -85,6 +98,22 @@ namespace DIP
             }
         }
 
+        private void openCameraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            foreach (FilterInfo Device in filterInfoCollection)
+                cameraComboBox.Items.Add(Device.Name);
+            cameraComboBox.SelectedIndex = 0;
+            videoCaptureDevice = new VideoCaptureDevice();
+
+            foregroundImageLoaded = true;
+
+            if (foregroundImageLoaded && backgroundImageLoaded)
+            {
+                modeToolStripButton.Enabled = true;
+            }
+        }
+
         private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Saves an image
@@ -111,17 +140,21 @@ namespace DIP
                                                             (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2); ;
         }
 
-        private void ActivityTwoForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            activityOneForm.Show();
-        }
-
         private void subtractionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             processButton.Enabled = true;
             firstTextBox.Enabled = true;
             modeLabel.Text = "Mode : Subtraction";
             mode = "subtraction";
+        }
+
+        private void liveSubtractionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            processButton.Enabled = true;
+            firstTextBox.Enabled = true;
+            cameraComboBox.Enabled = true;
+            modeLabel.Text = "Mode : Live Subtraction";
+            mode = "livesubtraction";
         }
 
         private async void processButton_Click(object sender, EventArgs e)
@@ -148,6 +181,27 @@ namespace DIP
                 // Enables process button
                 processButton.Enabled = true;
             }
+        }
+
+        private void cameraComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cameraComboBox.SelectedIndex].MonikerString);
+            videoCaptureDevice.NewFrame += FinalFrame_NewFrame;
+            videoCaptureDevice.Start();
+        }
+
+        private void FinalFrame_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            foregroundPictureBox.Image = (Bitmap)eventArgs.Frame.Clone();
+        }
+
+        private void ActivityTwoForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            activityOneForm.Show();
+
+            // Stops camera
+            if (videoCaptureDevice.IsRunning == true)
+                videoCaptureDevice.Stop();
         }
     }
 }

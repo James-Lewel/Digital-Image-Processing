@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivityTwoForm));
             this.processButton = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.firstTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,24 +38,27 @@
             this.modeLabel = new System.Windows.Forms.Label();
             this.modeToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.subtractionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.liveSubtractionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openForegroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDefault = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.switchButton = new System.Windows.Forms.ToolStripButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.processedPictureBox = new System.Windows.Forms.PictureBox();
             this.foregroundPictureBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cameraComboBox = new System.Windows.Forms.ComboBox();
             this.backgroundPictureBox = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStripDefault.SuspendLayout();
             this.toolStripDefault.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
@@ -77,14 +79,6 @@
             this.processButton.UseVisualStyleBackColor = true;
             this.processButton.Click += new System.EventHandler(this.processButton_Click);
             // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(87, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
-            // 
             // firstTextBox
             // 
             this.firstTextBox.Enabled = false;
@@ -98,9 +92,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(7, 36);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.Size = new System.Drawing.Size(76, 13);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Second Value";
+            this.label4.Text = "Select Camera";
             // 
             // label3
             // 
@@ -145,7 +139,8 @@
             // 
             this.modeToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.modeToolStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.subtractionToolStripMenuItem});
+            this.subtractionToolStripMenuItem,
+            this.liveSubtractionToolStripMenuItem});
             this.modeToolStripButton.Enabled = false;
             this.modeToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("modeToolStripButton.Image")));
             this.modeToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -156,9 +151,16 @@
             // subtractionToolStripMenuItem
             // 
             this.subtractionToolStripMenuItem.Name = "subtractionToolStripMenuItem";
-            this.subtractionToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.subtractionToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.subtractionToolStripMenuItem.Text = "Subtraction";
             this.subtractionToolStripMenuItem.Click += new System.EventHandler(this.subtractionToolStripMenuItem_Click);
+            // 
+            // liveSubtractionToolStripMenuItem
+            // 
+            this.liveSubtractionToolStripMenuItem.Name = "liveSubtractionToolStripMenuItem";
+            this.liveSubtractionToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.liveSubtractionToolStripMenuItem.Text = "Live Subtraction";
+            this.liveSubtractionToolStripMenuItem.Click += new System.EventHandler(this.liveSubtractionToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -169,7 +171,7 @@
             // 
             this.saveFileToolStripMenuItem.Enabled = false;
             this.saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveFileToolStripMenuItem.Text = "Save";
             this.saveFileToolStripMenuItem.Click += new System.EventHandler(this.saveFileToolStripMenuItem_Click);
             // 
@@ -177,9 +179,10 @@
             // 
             this.openFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openForegroundToolStripMenuItem,
-            this.openBackgroundToolStripMenuItem});
+            this.openBackgroundToolStripMenuItem,
+            this.openCameraToolStripMenuItem});
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openFileToolStripMenuItem.Text = "Open";
             // 
             // openForegroundToolStripMenuItem
@@ -195,6 +198,13 @@
             this.openBackgroundToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.openBackgroundToolStripMenuItem.Text = "Open Background";
             this.openBackgroundToolStripMenuItem.Click += new System.EventHandler(this.openBackgroundToolStripMenuItem_Click);
+            // 
+            // openCameraToolStripMenuItem
+            // 
+            this.openCameraToolStripMenuItem.Name = "openCameraToolStripMenuItem";
+            this.openCameraToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.openCameraToolStripMenuItem.Text = "Open Camera";
+            this.openCameraToolStripMenuItem.Click += new System.EventHandler(this.openCameraToolStripMenuItem_Click);
             // 
             // toolStripSplitButton1
             // 
@@ -223,6 +233,23 @@
             this.toolStripDefault.Size = new System.Drawing.Size(784, 25);
             this.toolStripDefault.TabIndex = 9;
             this.toolStripDefault.Text = "toolStrip1";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Enabled = false;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
+            this.toolStripLabel1.Text = "|----------|";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // switchButton
             // 
@@ -277,8 +304,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cameraComboBox);
             this.panel1.Controls.Add(this.processButton);
-            this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.firstTextBox);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.modeLabel);
@@ -287,6 +314,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(373, 81);
             this.panel1.TabIndex = 11;
+            // 
+            // cameraComboBox
+            // 
+            this.cameraComboBox.Enabled = false;
+            this.cameraComboBox.FormattingEnabled = true;
+            this.cameraComboBox.Location = new System.Drawing.Point(87, 33);
+            this.cameraComboBox.Name = "cameraComboBox";
+            this.cameraComboBox.Size = new System.Drawing.Size(100, 21);
+            this.cameraComboBox.TabIndex = 3;
+            this.cameraComboBox.SelectionChangeCommitted += new System.EventHandler(this.cameraComboBox_SelectionChangeCommitted);
             // 
             // backgroundPictureBox
             // 
@@ -307,23 +344,6 @@
             this.label5.Size = new System.Drawing.Size(160, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Background Image";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Enabled = false;
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
-            this.toolStripLabel1.Text = "|----------|";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // ActivityTwoForm
             // 
@@ -363,7 +383,6 @@
         #endregion
 
         private System.Windows.Forms.Button processButton;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox firstTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -390,5 +409,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem openCameraToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cameraComboBox;
+        private System.Windows.Forms.ToolStripMenuItem liveSubtractionToolStripMenuItem;
     }
 }
