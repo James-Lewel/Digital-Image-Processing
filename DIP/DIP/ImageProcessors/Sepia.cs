@@ -7,9 +7,9 @@ namespace DIP.ImageProcessors
     {
         private static readonly Processor _processor = new Processor();
 
-        public static Bitmap Process(Bitmap originalBitap)
+        public static Bitmap Process(Bitmap originalBitmap)
         {
-            return _processor.SepiaImage(originalBitap);
+            return _processor.SepiaImage(originalBitmap);
         }
     }
 }

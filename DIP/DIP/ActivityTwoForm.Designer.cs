@@ -315,6 +315,7 @@
             // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.Enabled = false;
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel1.Text = "|----------|";
